@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ETicaretAPI.Persistence.Contexts;
 using Microsoft.Extensions.Configuration;
+using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Persistence.Repositories;
 
 namespace ETicaretAPI.Persistence
 {
@@ -37,7 +39,14 @@ namespace ETicaretAPI.Persistence
             //configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.Presentation"));
             //configurationManager.AddJsonFile("appsettings.json");
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql("User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=ETicaretAPIDb;"));
-            services.AddSingleton<IProductService, ProductService>();
+            //services.AddSingleton<IProductService, ProductService>();
+            services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+
+            services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
         }
     }
 }
