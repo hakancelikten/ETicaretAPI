@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ETicaretAPI.Application.Abstractions;
-using ETicaretAPI.Persistence.Concretes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
@@ -39,7 +37,6 @@ namespace ETicaretAPI.Persistence
             //configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.Presentation"));
             //configurationManager.AddJsonFile("appsettings.json");
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql("User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=ETicaretAPIDb;"));
-            //services.AddSingleton<IProductService, ProductService>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();
